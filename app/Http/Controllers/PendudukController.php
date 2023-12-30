@@ -52,7 +52,12 @@ class PendudukController extends Controller
      */
     public function show($id)
     {
-        $penduduk = Penduduk::find($id);
+        $penduduk = Penduduk::find($id)
+            ->leftJoin('agamas', 'penduduks.agama_id', '=', 'agamas.id')
+            ->select('penduduks.id', 'penduduks.nik', 'penduduks.nama', 'penduduks.alamat', 'penduduks.lahir', 'agamas.agama')
+            ->where('penduduks.id', $id)
+            ->get();
+
         return $penduduk;
     }
 
