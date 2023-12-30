@@ -16,7 +16,7 @@ class PendudukController extends Controller
     public function index()
     {
         $penduduk = Penduduk::join('agamas', 'penduduks.agama_id', '=', 'agamas.id')
-            ->select('penduduks.id', 'penduduks.nik', 'penduduks.nama', 'penduduks.alamat', 'penduduks.lahir', 'agamas.agama')
+            ->select('penduduks.id', 'penduduks.nik', 'penduduks.nama', 'penduduks.alamat', 'penduduks.lahir', 'agamas.agama', 'penduduks.agama_id')
             ->get();
         return $penduduk;
     }

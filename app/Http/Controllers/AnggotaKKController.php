@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\AnggotaKK;
+use App\Models\Anggotakk;
 
 class AnggotaKKController extends Controller
 {
@@ -14,7 +14,13 @@ class AnggotaKKController extends Controller
      */
     public function index()
     {
-        return AnggotaKK::all();
+        $anggota = Anggotakk::join('kks', 'anggotakks.kk_id', '=', 'kks.id')
+            ->join('penduduks', 'anggotakks.penduduk_id', '=', 'penduduks.id')
+            ->join('hubungankks', 'anggotakks.hubungankk_id', '=', 'hubungankks.id')
+            ->select('kks.nokk', 'penduduks.nama', 'hubungankks.hubungankk', 'anggotakks.statusaktif')
+            ->get();
+
+        return $anggota;
     }
 
     /**
