@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\KK;
+use App\Models\Kk;
 
 class KKController extends Controller
 {
@@ -14,7 +14,7 @@ class KKController extends Controller
      */
     public function index()
     {
-        return KK::all();
+        return Kk::all();
     }
 
     /**
@@ -35,7 +35,7 @@ class KKController extends Controller
      */
     public function store(Request $request)
     {
-        $kk = new KK();
+        $kk = new Kk();
         $kk->fill($request->all())->save();
         return $kk;
     }
@@ -48,7 +48,7 @@ class KKController extends Controller
      */
     public function show($id)
     {
-        return KK::find($id);
+        return Kk::find($id);
     }
 
     /**
@@ -71,7 +71,7 @@ class KKController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $kk = KK::find($id);
+        $kk = Kk::find($id);
         $kk->fill($request->all())->save();
         return $kk;
     }
@@ -84,7 +84,7 @@ class KKController extends Controller
      */
     public function destroy($id)
     {
-        $kk = KK::find($id);
+        $kk = Kk::find($id);
         $kk->delete();
     }
 }

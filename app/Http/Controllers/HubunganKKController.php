@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\HubunganKK;
+use App\Models\Hubungankk;
 
 class HubunganKKController extends Controller
 {
@@ -14,7 +14,7 @@ class HubunganKKController extends Controller
      */
     public function index()
     {
-        return HubunganKK::all();
+        return Hubungankk::all();
     }
 
     /**
@@ -35,7 +35,7 @@ class HubunganKKController extends Controller
      */
     public function store(Request $request)
     {
-        $hubungankk = new HubunganKK();
+        $hubungankk = new Hubungankk();
         $hubungankk->fill($request->all())->save();
         return $hubungankk;
     }
@@ -48,7 +48,7 @@ class HubunganKKController extends Controller
      */
     public function show($id)
     {
-        return HubunganKK::find($id);
+        return Hubungankk::find($id);
     }
 
     /**
@@ -71,7 +71,7 @@ class HubunganKKController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $hubungankk = HubunganKK::find($id);
+        $hubungankk = Hubungankk::find($id);
         $hubungankk->fill($request->all())->save();
         return $hubungankk;
 
@@ -85,7 +85,7 @@ class HubunganKKController extends Controller
      */
     public function destroy($id)
     {
-        $hubungankk = HubunganKK::find($id);
+        $hubungankk = Hubungankk::find($id);
         $hubungankk->delete();
     }
 }
