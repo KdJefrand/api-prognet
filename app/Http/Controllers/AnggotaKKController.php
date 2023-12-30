@@ -41,7 +41,7 @@ class AnggotaKKController extends Controller
      */
     public function store(Request $request)
     {
-        $anggotakk = new AnggotaKK();
+        $anggotakk = new Anggotakk();
         $anggotakk->fill($request->all())->save();
         return $anggotakk;
     }
@@ -54,7 +54,14 @@ class AnggotaKKController extends Controller
      */
     public function show($id)
     {
-        return AnggotaKK::find($id);
+        $anggota = Anggotakk::join('kks', 'anggotakks.kk_id', '=', 'kks.id')
+            ->join('penduduks', 'anggotakks.penduduk_id', '=', 'penduduks.id')
+            ->join('hubungankks', 'anggotakks.hubungankk_id', '=', 'hubungankks.id')
+            ->select('kks.nokk', 'penduduks.nama', 'hubungankks.hubungankk', 'anggotakks.statusaktif')
+            ->where('id', $id)
+            ->get();
+
+        return $anggota;
     }
 
     /**
@@ -77,7 +84,7 @@ class AnggotaKKController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $anggotakk = AnggotaKK::find($id);
+        $anggotakk = Anggotakk::find($id);
         $anggotakk->fill($request->all())->save();
         return $anggotakk;
     }
@@ -90,7 +97,7 @@ class AnggotaKKController extends Controller
      */
     public function destroy($id)
     {
-        $anggotakk = AnggotaKK::find($id);
+        $anggotakk = Anggotakk::find($id);
         $anggotakk->delete();
     }
 }
