@@ -94,7 +94,7 @@ class AnggotaKKController extends Controller
         $findpenduduk = Penduduk::find($penduduk);
         if ($findkk != null && $findpenduduk != null) {
             $anggotakk->fill($request->all())->save();
-            return $anggotakk;
+            return response()->json(['Result' => $anggotakk, 'redirectTo' => '/AnggotaKK']);
         } else {
             $alertMessage = 'KK or Penduduk not found';
             return response()->json(['message' => $alertMessage], 404);
