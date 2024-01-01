@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kk;
+use App\Models\Penduduk;
 use Illuminate\Http\Request;
 use App\Models\Anggotakk;
 
@@ -86,8 +88,17 @@ class AnggotaKKController extends Controller
     public function update(Request $request, $id)
     {
         $anggotakk = Anggotakk::find($id);
-        $anggotakk->fill($request->all())->save();
-        return $anggotakk;
+        $kk = $request->input('kk_id');
+        $findkk = Kk::find($kk);
+        $penduduk = $request->input('penduduk_id');
+        $findpenduduk = Penduduk::find($penduduk);
+        if ($findkk != null && $findpenduduk != null) {
+            $anggotakk->fill($request->all())->save();
+            return $anggotakk;
+        } else {
+            $alertMessage = 'KK or Penduduk not found';
+            return response()->json(['message' => $alertMessage], 404);
+        }
     }
 
     /**
