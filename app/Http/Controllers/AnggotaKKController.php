@@ -18,6 +18,7 @@ class AnggotaKKController extends Controller
             ->join('penduduks', 'anggotakks.penduduk_id', '=', 'penduduks.id')
             ->join('hubungankks', 'anggotakks.hubungankk_id', '=', 'hubungankks.id')
             ->select('anggotakks.id', 'kks.nokk', 'penduduks.nama', 'hubungankks.hubungankk', 'anggotakks.statusaktif')
+            ->orderBy('kks.nokk')
             ->get();
 
         return $anggota;
