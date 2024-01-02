@@ -54,7 +54,7 @@ class PendudukController extends Controller
     {
         $penduduk = Penduduk::find($id)
             ->leftJoin('agamas', 'penduduks.agama_id', '=', 'agamas.id')
-            ->select('penduduks.id', 'penduduks.nik', 'penduduks.nama', 'penduduks.alamat', 'penduduks.lahir', 'agamas.agama')
+            ->select('penduduks.id', 'penduduks.nik', 'penduduks.nama', 'penduduks.alamat', 'penduduks.lahir', 'agamas.agama', 'penduduks.agama_id')
             ->where('penduduks.id', $id)
             ->get();
 
