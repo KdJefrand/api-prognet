@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kk;
+use App\Models\Anggotakk;
 
 class KKController extends Controller
 {
@@ -86,5 +87,17 @@ class KKController extends Controller
     {
         $kk = Kk::find($id);
         $kk->delete();
+    }
+
+    public function anggota($kk_id)
+    {
+        $anggota = Anggotakk::join('kks', 'anggotakks.kk_id', '=', 'kks.id')
+            ->join('penduduks', 'anggotakks.penduduk_id', '=', 'penduduks.id')
+            ->join('hubungankks', 'anggotakks.hubungankk_id', '=', 'hubungankks.id')
+            ->select('anggotakks.id', 'kks.nokk', 'penduduks.nama', 'hubungankks.hubungankk', 'anggotakks.statusaktif', 'anggotakks.kk_id')
+            ->where('anggotakks.kk_id', $kk_id)
+            ->get();
+
+        return $anggota;
     }
 }
