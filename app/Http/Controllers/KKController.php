@@ -89,13 +89,13 @@ class KKController extends Controller
         $kk->delete();
     }
 
-    public function anggota($kk_id)
+    public function anggota($nokk)
     {
         $anggota = Anggotakk::join('kks', 'anggotakks.kk_id', '=', 'kks.id')
             ->join('penduduks', 'anggotakks.penduduk_id', '=', 'penduduks.id')
             ->join('hubungankks', 'anggotakks.hubungankk_id', '=', 'hubungankks.id')
             ->select('anggotakks.id', 'kks.nokk', 'penduduks.nama', 'hubungankks.hubungankk', 'anggotakks.statusaktif', 'anggotakks.kk_id')
-            ->where('anggotakks.kk_id', $kk_id)
+            ->where('kks.nokk', $nokk)
             ->get();
 
         return $anggota;
