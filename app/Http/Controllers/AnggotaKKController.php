@@ -12,13 +12,13 @@ class AnggotaKKController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($nokk)
+    public function index($kk_id)
     {
         $anggota = Anggotakk::join('kks', 'anggotakks.kk_id', '=', 'kks.id')
             ->join('penduduks', 'anggotakks.penduduk_id', '=', 'penduduks.id')
             ->join('hubungankks', 'anggotakks.hubungankk_id', '=', 'hubungankks.id')
-            ->select('anggotakks.id', 'kks.nokk', 'penduduks.nama', 'hubungankks.hubungankk', 'anggotakks.statusaktif')
-            ->where('kks.nokk', $nokk)
+            ->select('anggotakks.id', 'kks.nokk', 'penduduks.nama', 'hubungankks.hubungankk', 'anggotakks.statusaktif', 'anggotakks.kk_id')
+            ->where('anggotakks.kk_id', $kk_id)
             ->get();
 
         return $anggota;
