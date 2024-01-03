@@ -94,7 +94,7 @@ class KKController extends Controller
         $anggota = Anggotakk::join('kks', 'anggotakks.kk_id', '=', 'kks.id')
             ->join('penduduks', 'anggotakks.penduduk_id', '=', 'penduduks.id')
             ->join('hubungankks', 'anggotakks.hubungankk_id', '=', 'hubungankks.id')
-            ->select('anggotakks.id', 'kks.nokk', 'penduduks.nama', 'hubungankks.hubungankk', 'anggotakks.statusaktif', 'anggotakks.kk_id')
+            ->select('anggotakks.id', 'kks.nokk', 'penduduks.nama', 'hubungankks.hubungankk', 'anggotakks.statusaktif', 'anggotakks.kk_id', 'penduduks.alamat')
             ->where('kks.nokk', $nokk)
             ->get();
 
