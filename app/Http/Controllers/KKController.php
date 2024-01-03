@@ -100,4 +100,10 @@ class KKController extends Controller
 
         return $anggota;
     }
+    public function addAnggota(Request $request, $nokk)
+    {
+        $anggotakk = new Anggotakk();
+        $anggotakk->fill($request->all())->save();
+        return $anggotakk;
+    }
 }
