@@ -28,7 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('/Penduduk', PendudukController::class)->middleware(['auth:sanctum']);
 Route::apiResource('/KK', KKController::class)->middleware(['auth:sanctum']);
 Route::get('/KK/Anggota/{nokk}', [KKController::class, 'anggota'])->middleware(['auth:sanctum']);
-Route::get('/KK/Anggota/{nokk}/{id}', [KKController::class, 'editAnggota'])->middleware(['auth:sanctum']);
+Route::put('/KK/Anggota/{nokk}/{id}', [KKController::class, 'update'])->middleware(['auth:sanctum']);
 Route::post('/KK/Anggota/create/{nokk}', [KKController::class, 'addAnggota'])->middleware(['auth:sanctum']);
 Route::apiResource('/HubunganKK', HubunganKKController::class)->middleware(['auth:sanctum']);
 Route::apiResource('/Agama', AgamaController::class)->middleware(['auth:sanctum']);
